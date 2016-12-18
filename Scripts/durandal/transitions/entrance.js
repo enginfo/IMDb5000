@@ -11,7 +11,7 @@
  * @requires jquery
  */
 define(['durandal/system', 'durandal/composition', 'jquery'], function(system, composition, $) {
-    var fadeOutDuration = 0;
+    var fadeOutDuration = 300;
     var endValues = {
         left: '0px',
         opacity: 1
@@ -27,7 +27,7 @@ define(['durandal/system', 'durandal/composition', 'jquery'], function(system, c
 
     var isIE = navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/MSIE/);
 
-    var animation = false,
+    var animation = true,
         domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
         elm = document.createElement('div');
 
@@ -78,7 +78,7 @@ define(['durandal/system', 'durandal/composition', 'jquery'], function(system, c
             if (!context.child) {
                 $(context.activeView).fadeOut(fadeOutDuration, endTransition);
             } else {
-                var duration = context.duration || 30;
+                var duration = context.duration || 70;
                 var $child = $(context.child);
                 var fadeOnly = !!context.fadeOnly;
                 var startValues = {

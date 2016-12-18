@@ -15,7 +15,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (s
     system.debug(true);
     //>>excludeEnd("build");
 
-    app.title = 'ITW Starter Kit';
+    app.title = 'IMDb 5000+';
 
     app.configurePlugins({
         router: true,

@@ -11,7 +11,7 @@
  * @requires jquery
  */
 define(['durandal/system', 'durandal/composition', 'jquery'], function(system, composition, $) {
-    var fadeOutDuration = 100;
+    var fadeOutDuration = 250;
     var endValues = {
         left: '0px',
         opacity: 1
@@ -78,14 +78,14 @@ define(['durandal/system', 'durandal/composition', 'jquery'], function(system, c
             if (!context.child) {
                 $(context.activeView).fadeOut(fadeOutDuration, endTransition);
             } else {
-                var duration = context.duration || 500;
+                var duration = context.duration || 30;
                 var $child = $(context.child);
                 var fadeOnly = !!context.fadeOnly;
                 var startValues = {
                     display: 'block',
                     opacity: 0,
                     position: 'absolute',
-                    left: fadeOnly || animation ? '0px' : '20px',
+                    left: fadeOnly || animation ? '0px' : '0px',
                     right: 0,
                     top: 0,
                     bottom: 0

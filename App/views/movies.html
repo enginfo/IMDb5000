@@ -1,0 +1,76 @@
+<style>
+    .page-header{
+        text-align: center;
+    }
+    .bs-callout {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: #eee;
+        border-image: none;
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px 1px 1px 5px;
+        margin-bottom: 5px;
+        padding: 20px;
+    }
+    .bs-callout:last-child {
+        margin-bottom: 0px;
+    }
+    .bs-callout h3 {
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+    .bs-callout-danger {
+        border-left-color: #d9534f;
+    }
+    .bs-callout-danger h3{
+        color: #d9534f;
+    }
+    .resume .list-group-item:first-child, .resume .list-group-item:last-child{
+      border-radius:0;
+    }
+    #searchBtn  {
+        padding: 5px 20px 5px 20px;
+        border-radius: 2px;
+    }
+    #clearSearchBtn {
+        padding: 5px 15px 5px 15px;
+        border-radius: 2px;
+    }
+</style>
+
+<section>
+    <header class="page-header">
+        <br>
+        <h1 class="page-title">MovieService - <small data-bind="visible: (moviesCount() > 0)"><i class="fa fa-film"></i> movies List [<span data-bind="text: moviesCount"></span>]</small></h1>
+    </header>
+    <div class="row">
+      <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading resume-heading">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
+                        <input type="text" id="movieTitle" class="form-control" data-bind="value : searchText" aria-describedby="basic-addon1" placeholder="Movie title" />
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                    <!--<div class="col-xs-8 col-sm-8">-->
+                        <button class="btn btn-primary" id="searchBtn" data-bind="click: searchMovies, disable : searchTextGood"><i class="fa fa-search"> Pesquisar</i></button>
+                    <!--<div class="col-xs-3 col-sm-3 ">-->
+                        <button class="btn btn-danger" id="clearSearchBtn" data-bind="click : clearMovies"><i class="fa fa-trash-o"></i></button>
+                </div>
+            </div>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+              <div class="row" data-bind="foreach: movies">
+                  <div class="col-md-4 col-sm-6">
+                      <div><i class="fa fa-film"></i> <a data-bind="attr: { href : '#moviedetails/'+movieID}, text: (movie_title.length>14 ? movie_title.slice(0,14)+'(...)' : movie_title)+(title_year == null ? '' : ' ('+title_year+')')"></a></div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

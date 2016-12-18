@@ -1,0 +1,62 @@
+<style>
+	.white {
+		background: none;
+		border: 2px solid white;
+		color: white;
+	}
+	.white:hover, .white:focus, .white:active {
+		background: white;
+		color: black;
+		border: 2px solid white;
+	}
+	.black {
+		background: none;
+		border: 2px solid black;
+		color: black;
+	}
+	.black:hover, .black:focus, .black:active {
+		background: #e5e5e5;
+		border: 2px solid black;
+		color: black
+	}
+</style>
+<header class="intro-header" id="carrousel" style="background-image: url('images/img1.jpg'); background-attachment: fixed">
+	<div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>IMDb 5000+</h1>
+                        <hr class="small" />
+                        <span class="subheading">Your Favorite movie DataBase</span>
+			<br />
+			<a class="white btn btn-default" href="#movies">Search Movies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>
+<section>
+    <div class="container">
+    <div class="page-header"><h3>Bem-Vindo ao IMDb 500+!</h3></div>
+    <p>Esta plataforma foi desenvolvida para a criação de uma alicação móvel no âmbito da unidade curricular de Introdução às tecnologias Web (ITW) no ano letivo de 2016/17.</p>
+	<a class="black btn btn-default" onclick="data()" data-bind="visible: btnvisible()">View Statistics</a>
+	<br /><br />
+    <h3 class="hidden-xs" data-bind="visible: textvisible()">Database Statistics</h3>
+	<div class="hidden-xs hidden-sm" id="chart1"></div>
+    <div class="hidden-xs hidden-sm" id="chart2"></div>
+    <div class="hidden-xs visible-sm" id="chart3"></div>
+    <div class="hidden-xs visible-sm" id="chart4"></div>
+    <div class="container visible-xs">
+		<h3 data-bind="visible: textvisible()">Database Statistics</h3>
+		<br />
+        <ul data-bind="visible: textvisible()">
+            <li data-bind="text: 'Actors: '+actorsCount()"></li>
+            <li data-bind="text: 'Movies: '+moviesCount()"></li>
+            <li data-bind="text: 'Directors: '+directorsCount()"></li>
+            <li data-bind="text: 'Countries: '+countriesCount()"></li>
+            <li data-bind="text: 'Languages: '+languagesCount()"></li>
+            <li data-bind="text: 'Genres: '+genresCount()"></li>
+        </ul>
+    </div>
+    </div>
+</section>

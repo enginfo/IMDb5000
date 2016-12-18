@@ -1,0 +1,116 @@
+<style>
+.page-header{
+    text-align: center;
+}
+.bs-callout {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+}
+.bs-callout:last-child {
+    margin-bottom: 0px;
+}
+.bs-callout h3 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+
+.bs-callout-danger h3{
+    color: #d9534f;
+}
+.resume .list-group-item:first-child, .resume .list-group-item:last-child{
+  border-radius:0;
+}
+</style>
+<section data-bind="foreach: movie_info">
+    <div class="container">
+    <div class="resume">
+    <header class="page-header">
+        <h1 class="page-title">Movie Details</h1>
+    </header>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+        <div class="panel panel-default">
+          <div class="panel-heading resume-heading">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="col-xs-12 col-sm-4">
+                  <figure>
+                    <img data-bind="attr: {src : (poster == '/images/noposter.png' ? 'images/noimage.jpg' : poster)}" style="border-radius: 5px;" height="250px" width="180px"></img>
+                  </figure>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <ul class="list-group">
+                    <li class="list-group-item"><b data-bind="text: movie_title"></b></li>
+                    <li class="list-group-item" data-bind="text: (title_year == null ? 'N/A' : title_year+' (Year)')"></li>
+                    <li class="list-group-item" data-bind="foreach: movie_actors"><!-- ko if: $index() > 0 -->,&nbsp;<!-- /ko--><a data-bind="attr: {href : '#actordetails/'+actorID},text: actorName"></a></li>
+                    <li class="list-group-item"><a data-bind="attr: {href : '#directordetails/'+directorID},text: (directorName == null ? 'N/A' : directorName+' (Director)')"></a></li>
+                    <li class="list-group-item" data-bind="text: duration+' min. (Duration)'"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+            <h3>Details</h3>
+            <br>
+            <table class="table">
+            <tr><th class="col-xs-3">Country:</th><td class="col-xs-9"><a data-bind="attr: {href : '#countrydetails/'+countryID},text: countryName"></a></td></tr>
+            <tr><th>Language:</th><td><a data-bind="attr: {href : '#languagedetails/'+languageID},text: languageName"></a></td></tr>
+            <tr><th>Genres:</th><td class="hidden-xs" data-bind="foreach: genres"><!-- ko if: $index() > 0 -->,&nbsp;<!-- /ko--><a data-bind="attr: { href : '#genredetails/'+genreID},text: genreName"></a></td>
+                <td class="visible-xs col-xs-2"><ul class="col-xs-10" data-bind="foreach: genres"><li><a data-bind="attr: { href : '#genredetails/'+genreID},text: genreName"></a></li></td>
+            </tr>
+            <tr class="hidden-xs"><th>Keywords:</th><td data-bind="text: plot_keywords"></td></tr>
+            <tr><th>ImDb Score:</th><td data-bind="text: imdb_score"></td></tr>
+            <tr><th>Source <i class="fa fa-external-link"></i>:</th><td><a data-bind="attr: { href : movie_imdb_link}">IMDb</i></a></td></tr>
+            </table>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+            <h3>Social</h3>
+            <br>
+            <table class="table">
+            <tr><th class="col-xs-9">Voted Users:</th><td class="col-xs-3" data-bind="text: num_voted_users"></td></tr>
+            <tr><th>Critics for reviews:</th><td data-bind="text: num_critic_for_reviews"></td></tr>
+            <tr><th>Content Rating:</th><td data-bind="text: content_rating"></td></tr>
+            <tr><th>Cast facebook:</th><td data-bind="text: cast_total_facebook_likes"></td></tr>
+            <tr><th>Facebook:</th><td data-bind="text: movie_facebook_likes"></td></tr>
+            </table>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+            <h3>Box Office</h3>
+            <br>
+            <table class="table">
+            <tr><th class="col-xs-9">Budget:</th><td class="col-xs-3" data-bind="text: (budget == null ? 'N/A' : budget+'$')"></td></tr>
+            <tr><th>Gross:</th><td data-bind="text: (gross == null ? 'N/A' : gross+'$')"></td></tr>
+            </table>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+            <h3>Technical Specs</h3>
+            <br>
+            <table class="table">
+            <tr><th class="col-xs-9">Aspect Ratio:</th><td class="col-xs-3" data-bind="text: aspect_ratio"></td></tr>
+            <tr><th>Color/BW:</th><td data-bind="text: color"></td></tr>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+</section>

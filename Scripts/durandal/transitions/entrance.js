@@ -11,53 +11,18 @@
  * @requires jquery
  */
 define(['durandal/system', 'durandal/composition', 'jquery'], function(system, composition, $) {
-    var fadeOutDuration = 500;
+    var fadeOutDuration = 100;
     var endValues = {
-        left: '0px',
+        marginRight: 0,
+        marginLeft: 0,
         opacity: 1
     };
     var clearValues = {
-        left: '',
-        top: '',
-        right: '',
-        bottom:'',
-        position:'',
-        opacity: ''
+        marginLeft: '',
+        marginRight: '',
+        opacity: '',
+        display: ''
     };
-
-    var isIE = navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/MSIE/);
-
-    var animation = true,
-        domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
-        elm = document.createElement('div');
-
-    if(elm.style.animationName !== undefined) {
-        animation = true;
-    }
-
-    if(!animation) {
-        for(var i = 0; i < domPrefixes.length; i++) {
-            if(elm.style[domPrefixes[i] + 'AnimationName'] !== undefined) {
-                animation = true;
-                break;
-            }
-        }
-    }
-
-    if(animation) {
-        if(isIE){
-            system.log('Using CSS3/jQuery mixed animations.');
-        }else{
-            system.log('Using CSS3 animations.');
-        }
-    } else {
-        system.log('Using jQuery animations.');
-    }
-
-    function removeAnimationClasses(ele, fadeOnly){
-        ele.classList.remove(fadeOnly ? 'entrance-in-fade' : 'entrance-in');
-        ele.classList.remove('entrance-out');
-    }
 
     /**
      * @class EntranceModule
@@ -66,6 +31,7 @@ define(['durandal/system', 'durandal/composition', 'jquery'], function(system, c
     var entrance = function(context) {
         return system.defer(function(dfd) {
             function endTransition() {
+                context.model.transitionComplete && context.model.transitionComplete(context.child, context.parent);
                 dfd.resolve();
             }
 
@@ -78,56 +44,45 @@ define(['durandal/system', 'durandal/composition', 'jquery'], function(system, c
             if (!context.child) {
                 $(context.activeView).fadeOut(fadeOutDuration, endTransition);
             } else {
-                var duration = context.duration || 70;
-                var $child = $(context.child);
+                var duration = context.duration || 500;
                 var fadeOnly = !!context.fadeOnly;
-                var startValues = {
-                    display: 'block',
-                    opacity: 0,
-                    position: 'absolute',
-                    left: fadeOnly || animation ? '0px' : '0px',
-                    right: 0,
-                    top: 0,
-                    bottom: 0
-                };
 
                 function startTransition() {
                     scrollIfNeeded();
                     context.triggerAttach();
 
-                    if (animation) {
-                        removeAnimationClasses(context.child, fadeOnly);
-                        context.child.classList.add(fadeOnly ? 'entrance-in-fade' : 'entrance-in');
-                        setTimeout(function () {
-                            removeAnimationClasses(context.child, fadeOnly);
-                            if(context.activeView){
-                                removeAnimationClasses(context.activeView, fadeOnly);
-                            }
-                            $child.css(clearValues);
-                            endTransition();
-                        }, duration);
-                    } else {
+                    var startValues = {
+                        marginLeft: fadeOnly ? '0' : '20px',
+                        marginRight: fadeOnly ? '0' : '-20px',
+                        opacity: 0,
+                        display: 'block'
+                    };
+
+                    var $child = $(context.child);
+
+                    var animate = function() {
                         $child.animate(endValues, {
                             duration: duration,
                             easing: 'swing',
-                            always: function() {
+                            always: function () {
                                 $child.css(clearValues);
                                 endTransition();
                             }
                         });
-                    }
+                    };
+
+                    $child.css(startValues);
+                    var promise = context.model.transitionStart && context.model.transitionStart(context.child, context.parent);
+                    if (promise && promise.then)
+                        promise.then(function() {
+                            animate();
+                        });
+                    else
+                        animate();
                 }
 
-                $child.css(startValues);
-
-                if(context.activeView) {
-                    if (animation && !isIE) {
-                        removeAnimationClasses(context.activeView, fadeOnly);
-                        context.activeView.classList.add('entrance-out');
-                        setTimeout(startTransition, fadeOutDuration);
-                    } else {
-                        $(context.activeView).fadeOut({ duration: fadeOutDuration, always: startTransition });
-                    }
+                if (context.activeView) {
+                    $(context.activeView).fadeOut({ duration: fadeOutDuration, always: startTransition });
                 } else {
                     startTransition();
                 }

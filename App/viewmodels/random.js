@@ -17,6 +17,8 @@ define(function() {
 			console.log("__init__");
 			self.moviesCount(data);
 		});
+		console.log(moviesCount());
+		console.log(Math.floor((Math.random() * moviesCount()) + 1));
 		window.location.href = "#moviedetails/"+Math.floor((Math.random() * moviesCount()) + 1);
 		location.reload();
 	};

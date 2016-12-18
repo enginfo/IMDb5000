@@ -11,7 +11,7 @@
  * @requires jquery
  */
 define(['durandal/system', 'durandal/composition', 'jquery'], function(system, composition, $) {
-    var fadeOutDuration = 100;
+    var fadeOutDuration = 10;
     var endValues = {
         marginRight: 0,
         marginLeft: 0,

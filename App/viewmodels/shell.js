@@ -4,10 +4,10 @@ define(['plugins/router', 'durandal/app'], function (router, app) {
         activate: function () {
             router.map([
                 {route: '', title:'Welcome', moduleId: 'viewmodels/welcome', nav: false, menu : 'Home', has_dropdown:false },
-                {route: 'directors', nav: true, menu: 'Directors <span class="caret"></span>', has_dropdown: true, content: [{ link: '_AZ', value: 'A-Z&nbsp;&nbsp;&nbsp;&nbsp;<i style="color: blue" class="fa fa-sort-alpha-asc"></i>' }, { link: '_FB', value: 'Likes&nbsp;<i style="color: blue" class="fa fa-thumbs-o-up"></i>' }] },
+                {route: 'directors', nav: true, menu: 'Directors<span class="caret"></span>', has_dropdown: true, content: [{ link: '_AZ', value: 'A-Z&nbsp;&nbsp;&nbsp;&nbsp;<i style="color: blue" class="fa fa-sort-alpha-asc"></i>' }, { link: '_FB', value: 'Likes&nbsp;<i style="color: blue" class="fa fa-thumbs-o-up"></i>' }] },
                 {route: 'directors_AZ', moduleId: 'viewmodels/directors_AZ', nav: false, has_dropdown: false },
 		        {route: 'directors_FB', moduleId: 'viewmodels/directors_FB', nav: false, has_dropdown: false },
-		        {route: 'actors', nav: true, menu: 'Actors <span class="caret"></span>', has_dropdown: true, content: [{ link: '_AZ', value: 'A-Z&nbsp;&nbsp;&nbsp;&nbsp;<i style="color: blue" class="fa fa-sort-alpha-asc"></i>' }, { link: '_FB', value: 'Likes&nbsp;<i style="color: blue" class="fa fa-thumbs-o-up"></i>' }] },
+		        {route: 'actors', nav: true, menu: 'Actors<span class="caret"></span>', has_dropdown: true, content: [{ link: '_AZ', value: 'A-Z&nbsp;&nbsp;&nbsp;&nbsp;<i style="color: blue" class="fa fa-sort-alpha-asc"></i>' }, { link: '_FB', value: 'Likes&nbsp;<i style="color: blue" class="fa fa-thumbs-o-up"></i>' }] },
 		        {route: 'actors_AZ', moduleId: 'viewmodels/actors_AZ', nav: false, has_dropdown:false},
 		        {route: 'actors_FB', moduleId: 'viewmodels/actors_FB', nav: false, has_dropdown:false},
 	            {route: 'movies', moduleId: 'viewmodels/movies', nav: true, menu: 'Movies',has_dropdown:false},

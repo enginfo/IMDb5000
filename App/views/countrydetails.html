@@ -58,28 +58,24 @@
               </div>
             </div>
           </div>
-
-          <div class="bs-callout bs-callout-danger">
-            <h3>Filmography:</h3>
-            <br>
-            <table class="table">
-                <thead>
-		           <tr>
-			          <th class="col-xs-4">Title</th>
-			          <th class="col-xs-2">Year</th>
-			          <th class="col-xs-2">Score</th>
-                      <th class="col-xs-4">IMDB link</th>
-		           </tr>
-	             </thead>
-                 <tbody data-bind="foreach: movies">
-                    <tr>
-                        <td><a data-bind="attr: { href : '#moviedetails/'+movieID}, text: movie_title"></a></td>
-                        <td data-bind="text: title_year"></td>
-                        <td data-bind="text: imdb_score"></td>
-                        <td><a data-bind="attr: { href : movie_imdb_link}, text: movie_imdb_link"></a></td>
-                    </tr>
-                </tbody>
-            </table>
+          <table class="table table-responsive">
+              <thead>
+                 <tr>
+                    <th class="col-lg-4">Title</th>
+                    <th class="hidden-xs col-lg-2">Year</th>
+                    <th class="hidden-xs col-lg-2 text-center">Score</th>
+                    <th class="col-lg-4 text-center">Source</th>
+                 </tr>
+               </thead>
+               <tbody data-bind="foreach: movies">
+                  <tr>
+                      <td><a data-bind="attr: { href : '#moviedetails/'+movieID}, text: movie_title"></a></td>
+                      <td class="hidden-xs" data-bind="text: title_year"></td>
+                      <td class="hidden-xs text-center" data-bind="text: imdb_score"></td>
+                      <td class="center-block text-center">&nbsp;&nbsp;<a data-bind="attr: { href : movie_imdb_link}">IMDd <i class="fa fa-link"></i></a></td>
+                  </tr>
+              </tbody>
+          </table>
           </div>
         </div>
       </div>

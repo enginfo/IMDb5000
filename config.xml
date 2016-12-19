@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget version="1.0.0.201511151632" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>IMDB 5000+</name>
+<widget id="pt.ua.itw2016" version="1.0.0.201611271439" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>IMDd 5000 App</name>
   <description>Esta plataforma servirá para o desenvolvimento de aplcações móveis na unidade curricular de Introdução às tecnologias Web (ITW) no ano letivo de 2015/16.</description>
   <author>André e Artur, Universidade de Aveiro</author>
   <preference name="permissions" value="none" />

@@ -19,8 +19,7 @@ define(function() {
 		});
 		setTimeout(function() {
 			window.location.href = "#moviedetails/"+Math.floor((Math.random() * moviesCount()) + 1);
-			location.reload();
-		}, 100);
+		}, 200);
 	};
 	return ViewModel;
 });
